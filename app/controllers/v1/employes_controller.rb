@@ -22,15 +22,18 @@ class V1::EmployesController < ApplicationController
   end
 
   def update
-    @employ.update(employe_params)
-    head(:ok)
+    if @employe.update(employe_params)
+      head(:ok)
+    else
+      head(:not_found)
+    end
   end
 
   def destroy
     if @employe.destroy
       head(:ok)
     else
-      error_api
+      head(:not_found)
     end
   end
 
@@ -41,7 +44,7 @@ class V1::EmployesController < ApplicationController
   end
 
   def set_employe
-    @employ = Employe.find(params[:id])
+    @employe = Employe.find(params[:id])
   end
 
   def error_api
