@@ -1,8 +1,14 @@
 class V1::EmployesController < ApplicationController
+  before_action :set_employe, only: [:show, :update, :destroy]
+
   def index
     @employes = Employe.all
 
     render json: @employes, status: :ok
+  end
+
+  def show
+    render json: @employ, status: :ok
   end
 
   def create
@@ -15,9 +21,12 @@ class V1::EmployesController < ApplicationController
     end
   end
 
-  def destroy
-    @employe = Employe.where(id: params[:id]).first
+  def update
+    @employ.update(employe_params)
+    head(:ok)
+  end
 
+  def destroy
     if @employe.destroy
       head(:ok)
     else
@@ -28,7 +37,11 @@ class V1::EmployesController < ApplicationController
   private
 
   def employe_params
-    params.require(:employe).permit(:name, :email, :salary)
+    params.permit(:name, :email, :salary)
+  end
+
+  def set_employe
+    @employ = Employe.find(params[:id])
   end
 
   def error_api
