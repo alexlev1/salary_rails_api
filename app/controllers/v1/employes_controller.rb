@@ -4,7 +4,7 @@ class V1::EmployesController < ApplicationController
   def index
     @employes = Employe.all
 
-    render json: @employes, status: :ok
+    render json: @employes
   end
 
   def show

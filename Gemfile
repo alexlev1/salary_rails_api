@@ -9,6 +9,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+gem 'active_model_serializers', '~> 0.10.0'
 
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
