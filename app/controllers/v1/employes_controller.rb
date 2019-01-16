@@ -40,7 +40,7 @@ class V1::EmployesController < ApplicationController
   private
 
   def employe_params
-    params.permit(:name, :email, :salary)
+    params.fetch(:employe, {}).permit(:name, :email, :salary)
   end
 
   def set_employe

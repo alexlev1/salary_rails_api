@@ -15,6 +15,6 @@ class V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:email, :password)
+    params.fetch(:user, {}).permit(:email, :password)
   end
 end

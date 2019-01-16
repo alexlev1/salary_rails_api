@@ -1,3 +1,14 @@
 class ApplicationController < ActionController::API
-  acts_as_token_authentication_handler_for User, fallback_to_devise: false
+  before_action :authorize
+
+  private
+
+  def authorize
+    token = params[:token]
+    @current_user = User.where(authentication_token: token).first
+
+    if !@current_user
+      render json:{error: 'unauthorized'}, status: :unauthorized
+    end
+  end
 end
